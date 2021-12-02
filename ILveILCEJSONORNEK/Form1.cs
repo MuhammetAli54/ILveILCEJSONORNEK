@@ -17,5 +17,18 @@ namespace ILveILCEJSONORNEK
             InitializeComponent();
         }
 
+        private void iLSorgulamaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Açık bir form varsa kapatılacak.
+            if (this.ActiveMdiChild!=null)
+            {
+                this.ActiveMdiChild.Hide();
+            }
+            FormILSorgulama formIlSorgulama = new FormILSorgulama();
+            formIlSorgulama.MdiParent = this;
+            formIlSorgulama.Show();
+            // form içinde form boyutlarında göstermesi için ayarlama yap
+            this.LayoutMdi(MdiLayout.TileVertical);
+        }
     }
 }

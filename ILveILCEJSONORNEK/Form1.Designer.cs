@@ -70,6 +70,7 @@ namespace ILveILCEJSONORNEK
             this.iLSorgulamaToolStripMenuItem.Name = "iLSorgulamaToolStripMenuItem";
             this.iLSorgulamaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.iLSorgulamaToolStripMenuItem.Text = "ILSorgulama";
+            this.iLSorgulamaToolStripMenuItem.Click += new System.EventHandler(this.iLSorgulamaToolStripMenuItem_Click);
             // 
             // iLCESorgulamaToolStripMenuItem
             // 
