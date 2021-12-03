@@ -30,5 +30,19 @@ namespace ILveILCEJSONORNEK
             // form içinde form boyutlarında göstermesi için ayarlama yap
             this.LayoutMdi(MdiLayout.TileVertical);
         }
+
+        private void iLCESorgulamaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.ActiveMdiChild!=null)
+            {
+                this.ActiveMdiChild.Hide();
+            }
+
+            FormILEAitILceleriSorgulama frmIlce = new FormILEAitILceleriSorgulama();
+            frmIlce.MdiParent = this;
+            frmIlce.Show();
+
+            this.LayoutMdi(MdiLayout.TileVertical);
+        }
     }
 }

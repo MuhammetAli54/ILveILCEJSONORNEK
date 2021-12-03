@@ -56,5 +56,39 @@ namespace ILveILCEJSON_BLL
 
             return liste;
         }
+
+        public List<ILILceBilgileri> ILAdinaGoreILceleriGetir(string ilAdi)
+        {
+            List<ILILceBilgileri> liste = new List<ILILceBilgileri>();
+
+            JObject j = JObject.Parse(JsonString);
+
+            List<string> ilclerListem2 = ilServisi.IlleriGetir().Single(x => x.ILAdi == ilAdi).ILceleri;
+
+            ilclerListem2 = ilclerListem2.Select(x => DilIslemleri.TurkceKarakterleriIngilizceyeCevir(x.ToLower())).ToList();
+
+            ilAdi = DilIslemleri.TurkceKarakterleriIngilizceyeCevir(ilAdi.ToLower());
+
+            foreach (var item in ilclerListem2)
+            {
+                var data = j.SelectToken(ilAdi.ToLower()).SelectToken(item);
+                if (data!=null)
+                {
+                    ILILceBilgileri bilgiler = new ILILceBilgileri();
+                    bilgiler.Ismi = data["belediye-ismi"] == null ? "" : data["belediye-ismi"].ToObject<string>();
+                    bilgiler.Tel = data["belediye-tel"]==null ? "" : data["belediye-tel"].ToObject<string>();
+                    bilgiler.Faks = data["belediye-faks"]==null ? "" : data["belediye-faks"].ToObject<string>();
+                    bilgiler.Mail = data["belediye-mail"] == null ? "" : data["belediye-mail"].ToObject<string>();
+                    bilgiler.Web = data["belediye-web"] == null ? "" : data["belediye-web"].ToObject<string>();
+                    bilgiler.Nufus = data["nufus"]==null ? "" : data["nufus"].ToObject<string>();
+                    bilgiler.Bilgi = data["bilgi"]==null ? "" : data["bilgi"].ToObject<string>();
+                    liste.Add(bilgiler);
+                }
+
+            }
+
+
+            return liste;
+        }
     }
 }

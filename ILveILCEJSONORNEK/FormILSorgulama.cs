@@ -49,6 +49,10 @@ namespace ILveILCEJSONORNEK
                 listView1.Items.Add(deger);
             }
 
+            groupBoxIL.Enabled = false;
+            groupBoxIL.Visible = false;
+            //detay göster şeklinde sağ tık menüsü
+
         }
 
         private void btnsec_Click(object sender, EventArgs e)
@@ -78,6 +82,26 @@ namespace ILveILCEJSONORNEK
 
 
 
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void detayGosterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            groupBoxIL.Visible = true;
+            groupBoxIL.Enabled = true;
+
+            ILILceBilgileri secilenIL = (ILILceBilgileri)listView1.FocusedItem.Tag;
+
+            richTextBoxIL.Text = secilenIL.Bilgi;
         }
     }
 }
