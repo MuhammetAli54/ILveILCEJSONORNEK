@@ -29,7 +29,27 @@ namespace ILveILCEJSON_BLL
         }
         public List<IL> IlleriGetir()
         {
-            return JsonConvert.DeserializeObject<List<IL>>(JsonString);
+            List<IL> ILListesi = new List<IL>();
+
+            // data ILJson  classından alınacak. Oradaki property'ler küçük harfli. Çünkü json dosyasında küçük harfle yazmışlar
+
+            var jsonData = JsonConvert.DeserializeObject<List<ILJson>>(JsonString);
+
+            //Alınan data bizim sistemimizdeki IL class'ına aktarılacak.
+            foreach (var item in jsonData)
+            {
+                ILListesi.Add(
+                    new IL()
+                    {
+                        ILAdi = item.il,
+                        PlakaKodu = Convert.ToByte(item.plaka),
+                        ILceleri = item.ilceleri
+
+                    });
+                    
+            }
+
+            return ILListesi;
         }
 
     }
